@@ -1,0 +1,23 @@
+{
+  "name": "dark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd api && npm start"
+  },
+  "engines": {
+    "node": "12.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raiden-x/dark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raiden-x/dark/issues"
+  },
+  "homepage": "https://github.com/raiden-x/dark#readme"
+}
