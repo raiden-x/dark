@@ -4,7 +4,7 @@
       "module": "commonjs",
       "lib": ["dom", "es6", "es2017", "es2019", "esnext.asynciterable"],
       "sourceMap": true,
-      "outDir": "./build",
+      "outDir": "./dist",
       "removeComments": true,
       "strict": true,
       "noImplicitAny": true,
@@ -30,7 +30,7 @@
       "emitDecoratorMetadata": true,
       "forceConsistentCasingInFileNames": true
     },
-    "exclude": ["node_modules", "build"],
+    "exclude": ["node_modules", "dist"],
     "include": ["./src/**/*.ts"]
   }
   

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run tsc && node build/app.js",
-    "tsc": "tsc"
+    "start": "node dist/app.js",
+    "complie": "tsc"
   },
   "author": "",
   "license": "ISC",
