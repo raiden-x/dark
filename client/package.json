@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "npx webpack"
+    "build": "webpack"
   },
   "babel": {
     "plugins": [
