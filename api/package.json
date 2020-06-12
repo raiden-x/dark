@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run tsc && node build/app.js",
-    "tsc": "tsc"
+    "tsc": "npx tsc"
   },
   "author": "",
   "license": "ISC",
