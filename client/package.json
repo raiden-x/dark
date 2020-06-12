@@ -4,7 +4,8 @@
   "description": "Kitsu API - Kitsu UI",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "babel": {
     "plugins": [
