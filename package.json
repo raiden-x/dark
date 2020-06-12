@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-client": "cd client && npm run build",
-    "start": "npm run build-client && cd api && npm ci && npm start",
-    "start-dev": "npm run build-client && cd api && npm start"
+    "heroku-postbuild": "cd client && npm run build",
+    "start": "cd api && npm ci && npm start",
+    "start-dev": "npm run heroku-postbuild && cd api && npm start"
   },
   "engines": {
     "node": "12.18.0"
