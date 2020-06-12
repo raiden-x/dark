@@ -8,8 +8,8 @@ import { createConnection } from 'typeorm';
 const port = process.env.PORT || 3000;
 const app = express();
 
-async function connectToDb() {
-  const connection = await createConnection({
+async function connectToDb(): Promise<void> {
+  await createConnection({
     type: 'postgres',
     database: process.env.DATABASE_URL,
     ssl: {
@@ -25,3 +25,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => console.log(`example app started at port ${port}`));
+connectToDb()
+  .then(() => console.log('connected'))
+  .catch(() => 'failed');
