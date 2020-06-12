@@ -20,6 +20,7 @@ const port = process.env.PORT || 3000;
 const app = express_1.default();
 function connectToDb() {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log(process.env.NODE_ENV);
         try {
             yield typeorm_1.createConnection({
                 type: 'postgres',

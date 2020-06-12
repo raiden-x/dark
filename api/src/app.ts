@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 async function connectToDb(): Promise<void> {
+  console.log(process.env.NODE_ENV);
   try {
     await createConnection({
       type: 'postgres',
