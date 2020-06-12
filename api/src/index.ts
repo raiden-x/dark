@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { connectToDatabase } from 'database/createConnection';
+import { connectToDatabase } from './database/createConnection';
 /*
     Heroku dynamically assigns a port to the application
     through this env varaible
