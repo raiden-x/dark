@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && cd build && node app.js"
+    "start": "npm run compile && node build/app.js",
+    "compile": "npx tsc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "pg": "^8.2.1",
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
@@ -33,6 +36,6 @@
     "prettier": "^2.0.5",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "3.9.5"
+    "typescript": "^3.9.5"
   }
 }
