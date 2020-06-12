@@ -1,4 +1,5 @@
 import express from 'express';
+import { createConnection } from 'typeorm';
 
 /*
     Heroku dynamically assigns a port to the application
@@ -6,6 +7,17 @@ import express from 'express';
 */
 const port = process.env.PORT || 3000;
 const app = express();
+
+async function connectToDb() {
+  const connection = await createConnection({
+    type: 'postgres',
+    database: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+  console.log('connected to db');
+}
 
 app.get('/', (req, res) => {
   console.log(req);
