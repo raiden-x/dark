@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "typescript": "npm install -g typescript",
-    "start": "npm run typescript && cd api && npm ci && npm start"
+    "start": "cd api && npm ci && npm start"
   },
   "engines": {
     "node": "12.18.0"
