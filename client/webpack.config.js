@@ -5,7 +5,8 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index_bundle.js",
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
     publicPath: "/",
   },
   resolve: {
@@ -26,7 +27,7 @@ module.exports = {
       },
     ],
   },
-  mode: "development",
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
