@@ -1,14 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { connectToDatabase } from './database/createConnection';
-import path from 'path';
+import attachRoutes from './router';
 
 dotenv.config();
 const port = process.env.PORT || 3000;
 const app = express();
-const staticPath = path.resolve(__dirname, '../../client/dist');
-console.log(staticPath);
-app.use(express.static(staticPath));
+attachRoutes(app);
 
 app.listen(port, () => console.log(`example app started at port ${port}`));
 connectToDatabase()
