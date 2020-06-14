@@ -60,7 +60,7 @@ export const StyledPrimaryButton = styled.button`
 
 export const ErrorDiv = styled.div`
   padding: 0.75rem 1.25rem;
-  color: #721c24;
+  color: #cf6679;
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
   border-radius: 5px;

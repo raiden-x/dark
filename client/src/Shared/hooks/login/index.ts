@@ -40,7 +40,7 @@ export const useLoginApi = (
   });
   const loginFunction = async (credentials: credentials) => {
     try {
-      await axios.get("/api/login");
+      await axios.post("/api/login", credentials);
       dispatch("success");
     } catch {
       dispatch("failure");
