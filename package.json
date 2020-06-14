@@ -8,7 +8,7 @@
     "heroku-postbuild": "cd client && npm install && npm install --dev && npm run build",
     "start": "cd api && npm ci && npm start",
     "build-ui": "cd client && NODE_ENV=production npm run build",
-    "start-dev": "npm run build-ui && cd api && npm start"
+    "start-dev": "npm run build-ui && cd api && npm run dev-start"
   },
   "engines": {
     "node": "12.18.0"
