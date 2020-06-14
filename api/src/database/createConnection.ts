@@ -2,20 +2,22 @@ import { createConnection, ConnectionOptions } from 'typeorm';
 import { User } from '../entities/user';
 
 export async function connectToDatabase(): Promise<void> {
-  let connectionConfig: ConnectionOptions;
+  let connectionConfig: ConnectionOptions = {
+    type: 'postgres',
+    entities: [User],
+  };
   if (process.env.NODE_ENV === 'production') {
     connectionConfig = {
-      type: 'postgres',
+      ...connectionConfig,
       url: process.env.DATABASE_URL,
     };
   } else {
     connectionConfig = {
-      type: 'postgres',
+      ...connectionConfig,
       host: process.env.DB_HOST,
       username: process.env.DB_USER_NAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User],
       synchronize: true,
     };
   }
