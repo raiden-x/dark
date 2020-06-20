@@ -1,0 +1,16 @@
+// exporFt const backgroundColorElevation = "#333038";
+// export const backgroundColor = "#1f1b24";
+// export const primaryColor = "#e62d3e";
+// export const secondaryColor = "#03dac5";
+// export const primaryColor = "#36c7d0";
+export const primaryColor = "rgb(97, 218, 251)";
+export const secondaryColor = "rgba(255,255,255, 0.87)";
+export const onBackgroundHE = "rgba(255,255,255, 0.87)";
+export const onBackgroundLE = "rgba(255,255,255, 0.6)";
+export const onPrimaryHE = "#000000";
+export const onPrimaryLE = "#000000";
+export const backgroundColor = "#121212";
+export const backgroundColorElevation = "#272727";
+export const errorBackgroundColor = "#f8d7da";
+export const onErrorBackgroundHE = "#cf6679";
+export const onErrorBackgroundLE = "#f5c6cb";

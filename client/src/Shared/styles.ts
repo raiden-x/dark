@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { backgroundColor } from "./theme";
 
 const GlobalStyles = createGlobalStyle`
     body, input {
@@ -9,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
         height: 100vh;
         width: 100vw;
         margin: 0px;
-        background-color: #333;
+        background-color: ${backgroundColor};
         color: whitesmoke;
     }
 `;

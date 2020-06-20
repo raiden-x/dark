@@ -1,5 +1,8 @@
 import * as React from "react";
+import withNavbar from "../Shared/Component/NavBar";
 
-export default function Chat() {
+function Chat() {
   return <div>Chat Page</div>;
 }
+
+export default withNavbar(Chat);

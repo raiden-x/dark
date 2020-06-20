@@ -25,6 +25,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ["file-loader"],
+      },
     ],
   },
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
@@ -36,5 +40,10 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "/public"),
     historyApiFallback: true,
+    port: 8081,
+    compress: true,
+    proxy: {
+      "/api": "http://localhost:8080",
+    },
   },
 };
