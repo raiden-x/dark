@@ -14,6 +14,7 @@ const BaseLoader = styled(PawPrints)`
       fill: white;
     }
   }
+  fill: ${backgroundColor};
   transform: rotate(0.25turn);
   animation: pulse 1s infinite;
   animation-direction: alternate;
@@ -29,13 +30,16 @@ const Loader2 = styled(BaseLoader)`
 const Loader1 = styled(BaseLoader)``;
 
 const Holder = styled.div`
-  position: absolute;
+  top: 0px;
+  left: 0px;
+  position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: transparent;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2000;
 `;
 
 export { Loader1, Loader2, Loader3, Holder };

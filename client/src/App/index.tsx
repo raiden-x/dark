@@ -18,7 +18,7 @@ const Register = lazy(() => import("../Register"));
 const Chat = lazy(() => import("../Chat"));
 
 export default function App() {
-  const [snackbarState, setSnackbarState] = useInitSnackbar();
+  const { snackbarState, setSnackbarState } = useInitSnackbar();
   useMemo(setAuthHeader, []);
   return (
     <MessageProvider value={setSnackbarState}>

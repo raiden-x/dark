@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Dark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="Description" content="Privacy focused Chat Application" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
     rel="stylesheet"
   />
-  <body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"
+    async
+  ></script>
+  <body style="margin: 0px;">
     <div id="app"></div>
+    <noscript
+      style="
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #121212;
+        color: rgba(255,255,255, 0.87)"
+    >
+      <div>This page requires javascript to be enabled to work properly</div>
+    </noscript>
   </body>
 </html>

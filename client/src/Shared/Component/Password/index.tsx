@@ -39,6 +39,7 @@ export default function Password(props: any) {
             <IconButton
               aria-label="toggle password visibility"
               onClick={handleClickShowPassword}
+              type="button"
             >
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>

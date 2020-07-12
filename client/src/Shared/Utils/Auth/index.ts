@@ -1,5 +1,5 @@
 export interface AuthHeaders {
-  jwt: string | null;
+  XSRF: string | null;
 }
 
 function getCookie(cname: any) {
@@ -19,10 +19,10 @@ function getCookie(cname: any) {
 }
 
 export function setAuthHeader() {
-  const jwt = getCookie("XSRF-TOKEN");
-  authHeaders.jwt = jwt;
+  const XSRF = getCookie("XSRF-TOKEN");
+  authHeaders.XSRF = XSRF;
 }
 
 export const authHeaders: AuthHeaders = {
-  jwt: null,
+  XSRF: null,
 };

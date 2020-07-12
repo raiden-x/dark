@@ -1,6 +1,9 @@
-import { createContext } from "react";
+import { createContext, Dispatch, SetStateAction, Context } from "react";
+import { SnackbarProps } from "@material-ui/core/Snackbar";
 
-const Message = createContext(null);
+const Message: Context<Dispatch<SetStateAction<SnackbarProps>>> = createContext(
+  null
+);
 const MessageProvider = Message.Provider;
 const MessageConsumer = Message.Consumer;
 

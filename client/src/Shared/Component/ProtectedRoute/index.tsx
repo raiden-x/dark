@@ -7,7 +7,7 @@ export default function ProtectedRoutes(props: any) {
   return (
     <Route
       render={() =>
-        authHeaders.jwt ? <Component /> : <Redirect to="/login" />
+        authHeaders.XSRF ? <Component /> : <Redirect to="/login" />
       }
     />
   );

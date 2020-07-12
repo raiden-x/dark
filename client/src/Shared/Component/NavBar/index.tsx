@@ -1,25 +1,39 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useRef, useCallback, lazy } from "react";
+
+import { Redirect } from "react-router";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
-import Logout from "@material-ui/icons/ExitToAppOutlined";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import { NavPage, ComponentContainer, StyledTitle } from "./styles";
 import useApi from "../../Hooks/useApi";
-import { Redirect } from "react-router";
 
 const url = "/api/logout";
 const method = "post";
+const IgnoreList = lazy(() => import("../../Component/IgnoreList"));
 
 export default function Navbar<T>(Component: () => JSX.Element) {
   return function WithNavbar(props: React.Props<T>) {
     const [payload, setPayload] = useState(null);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isIgnoreListOpen, setIsIgnoreListOpen] = useState(false);
     const [isLoggedOut] = useApi(payload);
+    const anchorEl = useRef<HTMLButtonElement>();
 
-    const logout = () => {
+    const logout = useCallback(() => {
+      setIsMenuOpen(false);
       setPayload({ url, method });
-    };
+    }, [setPayload, setIsMenuOpen]);
+
+    const openIgnoreDialog = useCallback(() => {
+      setIsMenuOpen(false);
+      setIsIgnoreListOpen(true);
+    }, [setIsIgnoreListOpen, setIsMenuOpen]);
 
     if (isLoggedOut) {
       return <Redirect to="/login" />;
@@ -30,10 +44,25 @@ export default function Navbar<T>(Component: () => JSX.Element) {
         <AppBar position="sticky" color="default">
           <Toolbar>
             <StyledTitle>Dark</StyledTitle>
-            <IconButton onClick={logout}>
-              <Logout />
+            <IconButton onClick={setIsMenuOpen.bind(this, true)} ref={anchorEl}>
+              <AccountCircleIcon />
             </IconButton>
+            <Menu
+              anchorEl={anchorEl.current}
+              keepMounted
+              open={isMenuOpen}
+              onClose={setIsMenuOpen.bind(this, false)}
+            >
+              <MenuItem onClick={openIgnoreDialog}>Ignore List</MenuItem>
+              <MenuItem onClick={logout}>Logout</MenuItem>
+            </Menu>
           </Toolbar>
+          {isIgnoreListOpen && (
+            <IgnoreList
+              open={isIgnoreListOpen}
+              handleClose={setIsIgnoreListOpen.bind(this, false)}
+            />
+          )}
         </AppBar>
         <ComponentContainer>
           <Component {...props} />
