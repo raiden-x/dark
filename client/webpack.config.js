@@ -57,6 +57,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(mp3)$/,
+        use: ["file-loader"],
+      },
     ],
   },
   mode: process.env.NODE_ENV === "production" ? "production" : "development",

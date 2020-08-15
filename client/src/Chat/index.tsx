@@ -18,7 +18,7 @@ function Chat() {
     openChatWindow,
     closeChatWindow,
     sendMessage,
-    recieveMessage,
+    receiveMessage,
     changeActiveTab,
     changeConnectionState,
   } = useChatState();
@@ -28,9 +28,9 @@ function Chat() {
   }, [changeConnectionState]);
   useEffect(() => {
     if (state.isConnected) {
-      listenToMessage(recieveMessage);
+      listenToMessage(receiveMessage);
     }
-  }, [state.isConnected, recieveMessage]);
+  }, [state.isConnected, receiveMessage]);
   return (
     <ChatPage>
       <StyledChatScreen
@@ -39,11 +39,11 @@ function Chat() {
         closeChatWindow={closeChatWindow}
         sendMessage={sendMessage}
         changeActiveTab={changeActiveTab}
-      ></StyledChatScreen>
+      />
       <WatchList
         openChatWindow={openChatWindow}
         connectionState={state.isConnected}
-      ></WatchList>
+      />
     </ChatPage>
   );
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { backgroundColor } from "../../theme";
+const backgroundImage = require("../../../Static/loginBackground.jpg");
 
 const Page = styled.div`
   position: fixed;
@@ -12,7 +12,9 @@ const Page = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  background-color: ${backgroundColor};
+  background-image: url("${backgroundImage.default}");
+  background-repeat: repeat;
+  background-size: contain;
 `;
 
 export default Page;

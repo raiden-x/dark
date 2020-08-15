@@ -26,7 +26,7 @@ module.exports = {
     "prettier/prettier": "error",
     "require-jsdoc": "off",
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "error",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error", // Checks effect dependencies
   },

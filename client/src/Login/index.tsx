@@ -14,6 +14,7 @@ import Form from "../Shared/Component/Form";
 import { setAuthHeader } from "../Shared/Utils/Auth";
 import useApi from "../Shared/Hooks/useApi";
 import { LESpan, StyledLink } from "./styles";
+import AppTitle from "../Shared/Component/AppTitle";
 
 const url = "/api/authenticate";
 const method: Method = "post";
@@ -52,6 +53,7 @@ export default function Login() {
   return (
     <BasePage>
       <Paper>
+        <AppTitle />
         <Form onSubmit={login}>
           <TextInput
             color="secondary"
@@ -60,22 +62,22 @@ export default function Login() {
             value={id}
             onChange={idChanged}
             spellCheck={false}
-          ></TextInput>
+          />
           <Password
             label="Password"
             color="secondary"
             onChange={passwordChanged}
             value={password}
-          ></Password>
+          />
           <Button color="primary" type="submit" onClick={login}>
             <b>Login</b>
           </Button>
         </Form>
+        <div style={{ marginTop: "10px" }}>
+          <LESpan>New User? </LESpan>
+          <StyledLink to="/register">Sign Up</StyledLink>
+        </div>
       </Paper>
-      <div style={{ marginTop: "10px" }}>
-        <LESpan>New User? </LESpan>
-        <StyledLink to="/register">Sign Up</StyledLink>
-      </div>
       <br />
       {err && <ErrorDiv>{err}</ErrorDiv>}
     </BasePage>

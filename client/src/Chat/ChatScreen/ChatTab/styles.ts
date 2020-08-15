@@ -13,4 +13,6 @@ export const MessageContainer = styled(ScrollDiv)`
   flex-flow: column;
   display: flex;
   max-height: calc(100% - 58px);
+  padding: 10px 0;
+  box-sizing: border-box;
 `;

@@ -43,7 +43,7 @@ export default function Navbar<T>(Component: () => JSX.Element) {
       <NavPage>
         <AppBar position="sticky" color="default">
           <Toolbar>
-            <StyledTitle>Dark</StyledTitle>
+            <StyledTitle>{"DARK".split("").join(" ")}</StyledTitle>
             <IconButton onClick={setIsMenuOpen.bind(this, true)} ref={anchorEl}>
               <AccountCircleIcon />
             </IconButton>

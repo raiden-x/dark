@@ -64,11 +64,9 @@ function WatchList({ openChatWindow, connectionState }: WatchListProps) {
         </StyledListContainer>
       )}
       {!list.length && (
-        <EmptyState
-          openDialog={changeDialogState.bind(this, true)}
-        ></EmptyState>
+        <EmptyState openDialog={changeDialogState.bind(this, true)} />
       )}
-      <AddUser open={dialogState} handleClose={handleClose}></AddUser>
+      <AddUser open={dialogState} handleClose={handleClose} />
     </>
   );
 }

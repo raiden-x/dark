@@ -8,7 +8,7 @@ export default function EmptyChatList({ openDialog }: EmptyStateProps) {
   return (
     <EmptyDiv>
       <EmptyMessage>
-        {"It's Empty lmao"}
+        {"It's Empty"}
         <br />
         Click on add button to know when a user comes online
         <br />

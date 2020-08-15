@@ -16,3 +16,4 @@ export const backgroundColorLowElevation = "#424242";
 export const errorBackgroundColor = "#f8d7da";
 export const onErrorBackgroundHE = "#cf6679";
 export const onErrorBackgroundLE = "#f5c6cb";
+export const messageCardColor = "#227F9C";

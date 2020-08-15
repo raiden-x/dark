@@ -20,6 +20,7 @@ import Password from "../Shared/Component/Password";
 import Form from "../Shared/Component/Form";
 import { setAuthHeader } from "../Shared/Utils/Auth";
 import { useShowSnackbar } from "../Shared/Hooks/useSnackbar";
+import AppTitle from "../Shared/Component/AppTitle";
 
 const url = "/api/register";
 const method: Method = "post";
@@ -78,6 +79,7 @@ export default function Signup() {
   return (
     <BasePage>
       <Paper>
+        <AppTitle />
         <Form>
           <TextInput
             variant="outlined"
@@ -88,7 +90,7 @@ export default function Signup() {
             helperText={isIdValid ? "" : "Required"}
             spellCheck={false}
             error={!isIdValid}
-          ></TextInput>
+          />
           <Password
             variant="outlined"
             label="Password"
@@ -101,7 +103,7 @@ export default function Signup() {
             }
             error={!isPasswordValid}
             color="secondary"
-          ></Password>
+          />
           <Password
             variant="outlined"
             label="Confirm Password"
@@ -114,7 +116,7 @@ export default function Signup() {
                 ? ""
                 : "Those Passwords don't match. Please try again"
             }
-          ></Password>
+          />
           <Button onClick={register} type="submit" color="primary">
             <b>Register</b>
           </Button>

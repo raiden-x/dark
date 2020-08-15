@@ -14,9 +14,11 @@ const ComponentContainer = styled.div`
   max-height: calc(100% - 64px);
 `;
 
-const StyledTitle = styled.h3`
+const StyledTitle = styled.div`
   flex-grow: 1;
+  font-size: 1.5em;
   color: ${primaryColor};
+  font-family: "Monoton", cursive;
 `;
 
 export { NavPage, ComponentContainer, StyledTitle };

@@ -92,7 +92,7 @@ export default function ChatWindow({
               ))}
             </Tabs>
             <IconButton onClick={openDialog}>
-              <Add></Add>
+              <Add />
             </IconButton>
           </StyledPaper>
           {state.tabs.map((tab, index) => {
@@ -104,15 +104,13 @@ export default function ChatWindow({
                 userId={tab.userId}
                 messages={messages}
                 sendMessage={sendMessage}
-              ></ChatTab>
+              />
             );
           })}
         </div>
       )}
-      {state.tabs.length === 0 && (
-        <EmptyState openDialog={openDialog}></EmptyState>
-      )}
-      {open && <AddPerson open={open} handleClose={handleClose}></AddPerson>}
+      {state.tabs.length === 0 && <EmptyState openDialog={openDialog} />}
+      {open && <AddPerson open={open} handleClose={handleClose} />}
     </>
   );
 }

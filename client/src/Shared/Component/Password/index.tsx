@@ -19,7 +19,7 @@ export default function Password(props: any) {
   return (
     <FormControl
       variant="outlined"
-      style={{ width: "250px", marginBottom: "25px" }}
+      style={{ width: "350px", marginBottom: "25px" }}
       error={props.error}
     >
       <InputLabel

@@ -16,19 +16,18 @@ export function startChatConnection(
     connectHeaders: {
       "CSRF-TOKEN": authHeaders.XSRF,
     },
-    debug: function (str) {
+    debug: function (str: string) {
       console.log(str);
     },
     webSocketFactory: () => {
-      return new SockJS(`https://${window.location.host}/chat`);
+      return new SockJS(`${window.location.origin}/chat`);
     },
     reconnectDelay: 5000000000,
     heartbeatIncoming: 4000,
     heartbeatOutgoing: 4000,
   });
 
-  client.onConnect = function (frame) {
-    console.log(frame);
+  client.onConnect = function () {
     changeConnectionState(true);
     disconnect = setInterval(() => {
       client.publish({
@@ -40,7 +39,10 @@ export function startChatConnection(
     }, 5000);
   };
 
-  client.onStompError = function (frame) {
+  client.onStompError = function (frame: {
+    headers: { [x: string]: string };
+    body: string;
+  }) {
     console.log("Broker reported error: " + frame.headers["message"]);
     console.log("Additional details: " + frame.body);
   };
@@ -48,13 +50,13 @@ export function startChatConnection(
 }
 
 export function listenToMessage(cb: (message: Message) => void) {
-  client.subscribe("/user/queue/reply", (message) =>
+  client.subscribe("/user/queue/reply", (message: { body: string }) =>
     cb(JSON.parse(message.body))
   );
 }
 
 export function listenToStatusChange(cb: (status: WatchList) => void): void {
-  client.subscribe("/user/queue/status", (message) => {
+  client.subscribe("/user/queue/status", (message: { body: string }) => {
     cb(JSON.parse(message.body));
   });
 }

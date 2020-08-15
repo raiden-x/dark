@@ -12,6 +12,8 @@ import {
 
 import { checkUser } from "./User";
 
+import { getDocument } from "./LinkPreview";
+
 export const watchList = {
   load: loadWatchList,
   add: addToWatchList,
@@ -26,4 +28,8 @@ export const ignoreList = {
 
 export const user = {
   check: checkUser,
+};
+
+export const document = {
+  load: getDocument,
 };

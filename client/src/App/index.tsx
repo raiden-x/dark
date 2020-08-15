@@ -11,6 +11,8 @@ import ProtectedRoutes from "../Shared/Component/ProtectedRoute";
 import Loader from "../Shared/Component/Loader";
 import { MessageProvider } from "../Shared/Context/Message";
 import { setAuthHeader } from "../Shared/Utils/Auth";
+import { initAudioStream } from "../Shared/Utils/Audio";
+import { initNotification } from "../Shared/Utils/Notifications";
 import { darkTheme } from "./theme";
 
 const Login = lazy(() => import("../Login"));
@@ -20,16 +22,18 @@ const Chat = lazy(() => import("../Chat"));
 export default function App() {
   const { snackbarState, setSnackbarState } = useInitSnackbar();
   useMemo(setAuthHeader, []);
+  useMemo(initAudioStream, []);
+  useMemo(initNotification, []);
   return (
     <MessageProvider value={setSnackbarState}>
       <ThemeProvider theme={darkTheme}>
-        <GlobalStyles></GlobalStyles>
+        <GlobalStyles />
         <Router>
           <Suspense fallback={<Loader />}>
             <Switch>
-              <Route path="/login" component={Login}></Route>
+              <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
-              <ProtectedRoutes component={Chat}></ProtectedRoutes>
+              <ProtectedRoutes component={Chat} />
             </Switch>
           </Suspense>
         </Router>
