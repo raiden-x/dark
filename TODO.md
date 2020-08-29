@@ -19,3 +19,38 @@
 
 - [ ] Add link preview in chat
 - [ ] Add video chat to the application
+
+## Rest Endpoints
+
+### Protected Rest Endpoints
+
+- [ ] add to watchList
+- [ ] remove from watchList
+- [ ] user check
+  - [ ] returns boolean
+- [ ] load ignore list
+- [ ] add to ignore list
+- [ ] remove from ignore list
+- [x] Logout
+  - [x] clears cookies in the browser
+
+### Non Protected End points
+
+- [ ] login
+  - [x] check if username/password matches send error message
+  - [x] set XSRF Token
+  - [x] set cookie bearer  - HTTP only
+- [ ] register
+  - [x] check if username exists
+  - [ ] check if password meets the minimum requirement
+
+## Websocket
+
+- [ ] listen to message
+- [ ] Status Change
+- [ ] send message
+
+## Questions to Ask
+
+- [ ] Are we renewing the expiry time of the jwt tokens and the cookies?
+- [ ] check if the cookies are encrypted

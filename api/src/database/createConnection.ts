@@ -1,10 +1,11 @@
 import { createConnection, ConnectionOptions } from 'typeorm';
 import { User } from '../entities/user';
+import { UserPreference } from '../entities/userPreference';
 
 export async function connectToDatabase(): Promise<void> {
   let connectionConfig: ConnectionOptions = {
     type: 'postgres',
-    entities: [User],
+    entities: [User, UserPreference],
   };
   if (process.env.NODE_ENV === 'production') {
     connectionConfig = {

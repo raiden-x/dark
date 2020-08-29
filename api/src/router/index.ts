@@ -1,12 +1,13 @@
-import path from 'path';
-import StaticRoute from './static';
-import LoginRoute from './login';
 import express, { Application } from 'express';
+import path from 'path';
+
+import AuthMiddleWare from '../Auth';
+import StaticRoute from './static';
+import SessionRoute from './session';
+import UserPreferenceRoute from './session';
 
 export default function attachRoutes(app: Application): void {
-  const staticPath = path.resolve(__dirname, '../../../client/dist');
-  const baseApiRoute = '/api';
-  app.use(baseApiRoute, LoginRoute);
-  app.use(express.static(staticPath));
+  app.use('/api', SessionRoute);
+  app.use('/api/flow', AuthMiddleWare, UserPreferenceRoute);
   app.use('*', StaticRoute);
 }
