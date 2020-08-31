@@ -11,8 +11,8 @@ export const loadWatchList = () =>
 
 export const addToWatchList = (userId: string) =>
   instance.post("/", {
-    watch: [userId],
+    add: [userId],
   });
 
 export const removeFromWatchList = (userId: string) =>
-  instance.post("/", { unwatch: [userId] });
+  instance.post("/", { remove: [userId] });

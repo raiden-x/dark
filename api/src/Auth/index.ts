@@ -13,10 +13,14 @@ enum Claims {
   XSRF = 'xsrf',
 }
 
+enum Headers {
+  XSRF = 'x-xsrf-token',
+}
+
 export default function authMiddleware(req: Request, res: Response, next: NextFunction): void {
   const cookies: Record<string, string> = req.cookies;
   const bearer = cookies[Cookie.BEARER];
-  const headerXsrf = req.headers[Cookie.XSRF];
+  const headerXsrf = req.headers[Headers.XSRF];
   try {
     jwt.verify(bearer, jwtSecret, (err, body) => {
       const cookieXsrf = (body as Record<string, string>)[Claims.XSRF];

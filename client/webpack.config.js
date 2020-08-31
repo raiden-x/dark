@@ -92,11 +92,12 @@ module.exports = {
   ],
   devServer: {
     contentBase: path.join(__dirname, "/public"),
+    transportMode: "ws",
     historyApiFallback: true,
     port: 8081,
     compress: true,
     proxy: {
-      "/api": "http://localhost:8080",
+      "/api": "http://localhost:3000",
     },
   },
 };
