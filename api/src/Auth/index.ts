@@ -3,12 +3,12 @@ import jwt from 'jsonwebtoken';
 
 import { generateSalt, jwtSecret } from '../utils/crypto';
 
-enum Cookie {
+export enum Cookie {
   BEARER = 'BEARER',
   XSRF = 'XSRF-TOKEN',
 }
 
-enum Claims {
+export enum Claims {
   USERNAME = 'username',
   XSRF = 'xsrf',
 }
