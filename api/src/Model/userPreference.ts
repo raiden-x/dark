@@ -1,5 +1,4 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
 export enum Relation {
   WATCH = 'watch',
   IGNORE = 'ignore',
@@ -18,4 +17,9 @@ export class UserPreference extends BaseEntity {
     enum: Relation,
   })
   type: Relation;
+}
+
+export async function getUsersToNotify(userId: string): Promise<string[]> {
+  const res = await UserPreference.find({ where: { userId, type: Relation.WATCH } });
+  return res.map((record) => record.entityId);
 }

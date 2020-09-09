@@ -5,9 +5,9 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import compression from 'compression';
 
-import { connectToDatabase } from './database/createConnection';
-import websocket from './websocket';
-import attachRoutes from './router';
+import { connectToDatabase } from './Database/createConnection';
+import websocket from './Websocket';
+import attachRoutes from './Router';
 
 dotenv.config();
 const port = process.env.PORT || 3000;

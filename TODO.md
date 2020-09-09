@@ -53,3 +53,7 @@
 
 - [ ] Are we renewing the expiry time of the jwt tokens and the cookies?
 - [ ] check if the cookies are encrypted
+
+## Limitations
+
+- [ ] Can handle only one chat window per session

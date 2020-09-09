@@ -12,3 +12,6 @@ export const generateSalt = (): string => randomBytes(16).toString('base64');
 export const jwtSecret = 'darkjwtsecret';
 
 export const cookieSecret = 'darkcookiesecret';
+
+export const generateRandomNumber = (): string =>
+  String(Math.trunc(Math.random() * 10000)).padStart(4, '0');

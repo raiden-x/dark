@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { User } from '../entities/user';
-import { generateHash, generateSalt } from '../utils/crypto';
+import { User } from '../Model/user';
+import { generateHash, generateSalt } from '../Utils/crypto';
 import { addCookies, removeCookies } from '../Auth';
 
 /*

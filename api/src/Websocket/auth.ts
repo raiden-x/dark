@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
-import { Request } from 'express';
 
-import { Cookie, Claims } from '../Auth';
-import { jwtSecret } from '../utils/crypto';
+import { Cookie, Claims, Headers } from '../Auth';
+import { jwtSecret } from '../Utils/crypto';
+import { getCookie, getQueryParam } from '../Utils/url';
 
 export default function validateWebsocketConnection(req: Request): Promise<string> {
   const res: Promise<string> = new Promise((resolve, reject) => {
-    const cookies: Record<string, string> = req.cookies;
-    const bearer = cookies[Cookie.BEARER];
-    const urlXsrf = req.query.xsrfToken;
+    const cookies = (req.headers as any).cookie;
+    const bearer = getCookie(Cookie.BEARER, cookies);
+    const urlXsrf = getQueryParam(req.url.slice(1), Headers.XSRF);
     jwt.verify(bearer, jwtSecret, (err, body) => {
       const cookieXsrf = (body as Record<string, string>)[Claims.XSRF];
       const userId = (body as Record<string, string>)[Claims.USERNAME];

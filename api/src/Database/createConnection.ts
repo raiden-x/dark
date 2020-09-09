@@ -1,6 +1,6 @@
 import { createConnection, ConnectionOptions } from 'typeorm';
-import { User } from '../entities/user';
-import { UserPreference } from '../entities/userPreference';
+import { User } from '../Model/user';
+import { UserPreference } from '../Model/userPreference';
 
 export async function connectToDatabase(): Promise<void> {
   let connectionConfig: ConnectionOptions = {

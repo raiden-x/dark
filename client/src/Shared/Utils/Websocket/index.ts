@@ -8,7 +8,9 @@ export function startChatConnection(
   changeConnectionState: (s: boolean) => void
 ) {
   client = new WebSocket(
-    `ws://${window.location.host}/?x-xsrf-token=${authHeaders.XSRF}`
+    `ws://${window.location.host}?x-xsrf-token=${encodeURIComponent(
+      authHeaders.XSRF
+    )}`
   );
   client.onopen = () => {
     changeConnectionState(true);

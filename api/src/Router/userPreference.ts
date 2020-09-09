@@ -1,5 +1,8 @@
 import { Router } from 'express';
-import { UserPreference, Relation } from '../entities/userPreference';
+
+import { UserPreference, Relation } from '../Model/userPreference';
+import { Status } from '../Types/userPreference';
+import { getUserStatus } from '../Websocket/session';
 
 const router = Router();
 
@@ -9,7 +12,10 @@ router.get('/:action', async (req, res) => {
     const records = await UserPreference.find({
       where: { entityId: res.locals.userId, type: actionType },
     });
-    const resData = records.map((record) => record.userId);
+    const resData: Status[] = records.map((record) => ({
+      username: record.userId,
+      userStatus: getUserStatus(record.userId),
+    }));
     res.send(resData);
   } catch {
     res.sendStatus(500);

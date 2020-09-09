@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-import { generateSalt, jwtSecret } from '../utils/crypto';
+import { generateSalt, jwtSecret } from '../Utils/crypto';
 
 export enum Cookie {
   BEARER = 'BEARER',
@@ -13,7 +13,7 @@ export enum Claims {
   XSRF = 'xsrf',
 }
 
-enum Headers {
+export enum Headers {
   XSRF = 'x-xsrf-token',
 }
 
