@@ -1,6 +1,7 @@
 import { authHeaders } from "../Auth";
 import { Message } from "../../Hooks/useChatState";
 import { WatchList } from "../../Hooks/useWatchListState";
+import { WebsocketPayload, isMessageBody, isWatchListBody } from "./types";
 
 let client: WebSocket;
 
@@ -19,13 +20,21 @@ export function startChatConnection(
 }
 export function listenToMessage(cb: (message: Message) => void) {
   client.addEventListener("message", ({ data }) => {
-    cb(JSON.parse(data));
+    const payload: WebsocketPayload = JSON.parse(data);
+    if (!isMessageBody(payload.body, payload.topic)) {
+      return;
+    }
+    cb(payload.body);
   });
 }
 
 export function listenToStatusChange(cb: (status: WatchList) => void): void {
   client.addEventListener("message", ({ data }) => {
-    cb(JSON.parse(data));
+    const payload: WebsocketPayload = JSON.parse(data);
+    if (!isWatchListBody(payload.body, payload.topic)) {
+      return;
+    }
+    cb(payload.body);
   });
 }
 

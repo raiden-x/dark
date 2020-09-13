@@ -32,3 +32,8 @@ export function sendMessageToUser(message: WebsocketPayload): void {
   const toUser = message.body.to;
   getConnectionsForUser(toUser).forEach((connection) => connection.socket.send(message));
 }
+
+export function sendStatus(user: UserId, infoUserId: string) {
+  const clientConnections = getConnectionsForUser(user);
+  
+}
