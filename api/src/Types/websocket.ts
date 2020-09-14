@@ -10,9 +10,7 @@ export interface ActiveConnections {
   [key: string]: Connection;
 }
 
-export interface Connection {
-  socket: ws;
-  lastAlive: number;
+export interface Connection extends ws {
   userId: string;
   connectionId: string;
   isAlive: boolean;

@@ -37,12 +37,18 @@ export default function initializeWebsocket(server: Server): void {
     addMessaging(wss, ws);
   });
 
-  const pingInterval = setInterval(function ping() {
+  const statusInterval = setInterval(function ping() {
     getAllConnections().forEach((connection) => {
       markAsInactiveConnection(connection);
       connection.socket.ping();
     });
   }, 5000);
+
+  const killInterval = setInterval(function ping() {
+    getAllConnections().forEach((connection) => {
+      
+    })
+  });
 
   wss.on('close', function close() {
     clearInterval(pingInterval);

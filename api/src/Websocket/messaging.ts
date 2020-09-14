@@ -20,7 +20,7 @@ export async function sendStatusChange(status: UserStatus, userId: string): Prom
   };
   usersToNotify.forEach((user) => {
     getConnectionsForUser(user).forEach((connection) => {
-      connection.socket.send(JSON.stringify(payload));
+      connection.send(JSON.stringify(payload));
     });
   });
 }
@@ -30,10 +30,5 @@ export function sendMessageToUser(message: WebsocketPayload): void {
     return;
   }
   const toUser = message.body.to;
-  getConnectionsForUser(toUser).forEach((connection) => connection.socket.send(message));
-}
-
-export function sendStatus(user: UserId, infoUserId: string) {
-  const clientConnections = getConnectionsForUser(user);
-  
+  getConnectionsForUser(toUser).forEach((connection) => connection.send(message));
 }

@@ -1,62 +1,38 @@
 import ws from 'ws';
+import NodeCache from 'node-cache';
 
 import { ActiveConnections, Connection, UserConnections } from '../Types/websocket';
 import { sendStatusChange } from './messaging';
 import { UserStatus } from '../Types/userPreference';
 import { generateRandomNumber } from '../Utils/crypto';
 
-export const connections: ActiveConnections = {};
 export const userConnection: UserConnections = {};
+const userStatusCache = new NodeCache({ stdTTL: 10000 });
 
 export function getUserIdFromConnectionId(connectionId: string): string {
   return connectionId.slice(4);
 }
 
-export function addToActiveConnection(userId: string, ws: ws): Connection {
+export function addToActiveConnection(userId: string, ws: Connection): Connection {
   const randomId: string = generateRandomNumber();
   const connectionId = `${randomId}${userId}`;
-  const connection = {
-    lastAlive: Date.now(),
-    socket: ws,
-    userId: getUserIdFromConnectionId(connectionId),
-    isAlive: true,
-    connectionId,
-  };
-  addToUserConnection(connection);
-  connections[connectionId] = connection;
+  ws.userId = userId;
+  ws.connectionId = connectionId;
+  addToUserConnection(ws);
+  markUserAsActive(userId);
+  return ws;
+}
+
+function markUserAsActive(userId: string): void {
+  if (!userStatusCache.has(userId)) {
+    return;
+  }
+  userStatusCache.set(userId, true);
   void sendStatusChange(UserStatus.ONLINE, userId);
-  return connections[connectionId];
 }
 
-export function markAsActiveConnection(connection: Connection): void {
-  if (!connection.isAlive) {
-    console.log('changing to alive');
-    void sendStatusChange(UserStatus.ONLINE, connection.userId);
-  }
-  connection.lastAlive = Date.now();
-  connection.isAlive = true;
-}
-
-export function markAsInactiveConnection(connection: Connection): void {
-  const timeDiff = Date.now() - connection.lastAlive;
-  if (timeDiff > 10000 && connection.isAlive) {
-    console.log('changing to dead');
-    connection.isAlive = false;
-    void sendStatusChange(UserStatus.OFFLINE, connection.userId);
-  }
-}
-
-export function removeFromActiveConnection(connection: Connection): void {
-  const connectionId = connection.connectionId;
-  const userId = connection.userId;
-  connections[connectionId].socket.terminate();
-  removeFromUserConnection(connection);
-  delete connections[connectionId];
-  void sendStatusChange(UserStatus.OFFLINE, userId);
-}
-
-export function getAllConnections(): Connection[] {
-  return Object.values(connections);
+function touchRecord(userId: string): void {
+  
 }
 
 export function getConnectionsForUser(userId: string): Connection[] {
@@ -79,4 +55,8 @@ function removeFromUserConnection(connection: Connection): void {
 export function getUserStatus(userId: string): UserStatus {
   console.log(userConnection);
   return !!userConnection[userId]?.length ? UserStatus.ONLINE : UserStatus.OFFLINE;
+}
+
+export function initializeCache(): void {
+  userStatusCache.on('expired', (userId) => void sendStatusChange(UserStatus.OFFLINE, userId));
 }

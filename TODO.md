@@ -8,9 +8,9 @@
 - [x] check the security features added in the java code(use passport JS?) for login
 - [ ] check how to write sql queries instead of using ORM using sql murder mysteries
 - [x] Create Tables
-- [ ] Create corresponding rest end points
+- [x] Create corresponding rest end points
 - [ ] refresh concepts about the network layers
-- [ ] figure out how websocket works
+- [x] figure out how websocket works
 - [ ] install heroku cli
 - [ ] deploy to heroku
 
@@ -39,14 +39,14 @@
   - [x] check if username/password matches send error message
   - [x] set XSRF Token
   - [x] set cookie bearer  - HTTP only
-- [ ] register
+- [x] register
   - [x] check if username exists
-  - [ ] check if password meets the minimum requirement
+  - [x] check if password meets the minimum requirement
 
 ## Websocket
 
 - [ ] listen to message
-- [ ] Status Change
+- [x] Status Change
 - [ ] send message
 
 ## Questions to Ask
@@ -56,4 +56,4 @@
 
 ## Limitations
 
-- [ ] Can handle only one chat window per session
+- [ ] Can handle only one chat window per session cuz/ should we send the self message to other client? Might not need client change
