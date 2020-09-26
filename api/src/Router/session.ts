@@ -33,7 +33,7 @@ route.post('/authenticate', async (req, res) => {
     }
   } catch (err) {
     console.log(err);
-    res.sendStatus(401);
+    res.status(401).send('Invalid Username or Password');
   }
 });
 
@@ -46,10 +46,7 @@ route.post('/register', async (req, res) => {
     await User.insert({ userId: username, salt: salt, password: hashedPassword });
     res.sendStatus(201);
   } else {
-    res.status(500);
-    res.send({
-      failureReason: 'user id already exists',
-    });
+    res.status(409).send('UserName already Exists');
   }
 });
 

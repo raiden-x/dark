@@ -7,16 +7,17 @@ const defaultOptions: Options = {
 
 export default class Cache extends EventEmitter {
   cacheObjects: Record<string, CacheObject>;
-  interval: Timeout;
+  interval: NodeJS.Timeout;
   options: Options;
-  constructor(options: Options) {
+  constructor(options: Partial<Options>) {
     super();
     this.options = { ...defaultOptions, ...options };
     this.cacheObjects = {};
     this.interval = setInterval(() => {
+      const currentTime = Date.now();
       Object.entries(this.cacheObjects).forEach((entry) => {
         const [key, value, createdDate] = [entry[0], entry[1].value, entry[1].createdAt];
-        if (!(Date.now() - createdDate > this.options.ttl)) {
+        if (!(currentTime - createdDate > this.options.ttl)) {
           return;
         }
         delete this.cacheObjects[key];
@@ -27,13 +28,13 @@ export default class Cache extends EventEmitter {
   has(key: string): boolean {
     return this.cacheObjects.hasOwnProperty(key);
   }
-  get(key: string): string | null {
+  get(key: string): unknown | null {
     if (!this.has(key)) {
       return null;
     }
     return this.cacheObjects[key].value;
   }
-  set(key: string, value: string): void {
+  set(key: string, value: unknown): void {
     this.cacheObjects[key] = {
       value,
       createdAt: Date.now(),
@@ -54,10 +55,13 @@ export default class Cache extends EventEmitter {
     this.cacheObjects[key].createdAt = Date.now();
     return true;
   }
+  clear(): void {
+    clearInterval(this.interval);
+  }
 }
 
 interface CacheObject {
-  value: string;
+  value: unknown;
   createdAt: number;
 }
 

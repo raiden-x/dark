@@ -31,9 +31,9 @@ export interface MessageBody {
   timestamp: string;
 }
 
-export interface WebsocketPayload {
+export interface WebsocketPayload<T extends MessageBody | Status> {
   topic: WebsocketTopic;
-  body: MessageBody | Status;
+  body: T;
 }
 
 export enum WebsocketTopic {

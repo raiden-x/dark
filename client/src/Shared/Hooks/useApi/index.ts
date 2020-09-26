@@ -26,7 +26,7 @@ export default function useApi(payload?: Payload) {
           setState({
             data: null,
             isLoading: false,
-            err: err.response.data.failureReason,
+            err: err.response.data,
           });
         });
     }

@@ -1,7 +1,12 @@
 import { authHeaders } from "../Auth";
 import { Message } from "../../Hooks/useChatState";
 import { WatchList } from "../../Hooks/useWatchListState";
-import { WebsocketPayload, isMessageBody, isWatchListBody } from "./types";
+import {
+  WebsocketPayload,
+  isMessageBody,
+  isWatchListBody,
+  WebsocketTopic,
+} from "./types";
 
 let client: WebSocket;
 
@@ -48,7 +53,7 @@ export function closeChatConnection(
 export function sendMessage(message: Message) {
   client.send(
     JSON.stringify({
-      destination: "/app/chat",
+      topic: WebsocketTopic.MESSAGE,
       body: JSON.stringify(message),
     })
   );

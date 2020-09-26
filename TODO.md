@@ -57,3 +57,7 @@
 ## Limitations
 
 - [ ] Can handle only one chat window per session cuz/ should we send the self message to other client? Might not need client change
+
+## Bugs
+
+- [x] Not throwing error message on login

@@ -3,9 +3,10 @@ import { useState, useCallback, useEffect } from "react";
 import { watchList, user } from "../../../Shared/APIs";
 import { useShowSnackbar } from "../../../Shared/Hooks/useSnackbar";
 import { listenToStatusChange } from "../../Utils/Websocket";
+import { find } from "lodash";
 
 const addUser = (userId: string) => {
-  watchList.add(userId);
+  return watchList.add(userId);
 };
 
 const removeUser = (userId: string) => {
@@ -18,14 +19,7 @@ export default function useWatchListState(isConnected: boolean) {
   const showMessage = useShowSnackbar();
 
   const updateUserStatus = useCallback((update: WatchList) => {
-    setList((list) => {
-      return list.map((u) => {
-        if (u.username !== update.username) {
-          return u;
-        }
-        return update;
-      });
-    });
+    setList((list) => mergeUserList(list, update));
   }, []);
 
   useEffect(() => {
@@ -87,4 +81,17 @@ export interface WatchList {
 export enum Status {
   ONLINE = "ONLINE",
   OFFLINE = "OFFLINE",
+}
+
+function mergeUserList(list: WatchList[], entry: WatchList): WatchList[] {
+  const existingEntry = find(
+    list,
+    (item: WatchList) => item.username === entry.username
+  );
+  if (existingEntry) {
+    existingEntry.userStatus = entry.userStatus;
+    return [...list];
+  } else {
+    return list.concat(entry);
+  }
 }

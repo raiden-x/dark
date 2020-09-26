@@ -3,6 +3,7 @@ import { Router } from 'express';
 import { UserPreference, Relation } from '../Model/userPreference';
 import { Status } from '../Types/userPreference';
 import { getUserStatus } from '../Websocket/session';
+import { sendStatusToUser } from '../Websocket/messaging';
 
 const router = Router();
 
@@ -31,6 +32,8 @@ router.post('/:action', async (req, res) => {
         record.entityId = res.locals.userId;
         record.userId = userId;
         record.type = actionType;
+        const userStatus = getUserStatus(userId);
+        void sendStatusToUser(userId, userStatus, res.locals.userId);
         return UserPreference.insert(record);
       });
       await Promise.all(promiseArray);
