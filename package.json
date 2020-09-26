@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && npm install && npm install --dev && npm run build",
-    "start": "cd api && npm ci && npm start",
+    "start": "npm install -g typescript && cd api && npm ci && npm start",
     "build-ui": "cd client && NODE_ENV=production npm run build",
     "start-dev": "npm run build-ui && cd api && npm run dev-start"
   },
