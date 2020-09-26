@@ -11,6 +11,7 @@ export async function connectToDatabase(): Promise<void> {
     connectionConfig = {
       ...connectionConfig,
       url: process.env.DATABASE_URL,
+      synchronize: true,
     };
   } else {
     connectionConfig = {
