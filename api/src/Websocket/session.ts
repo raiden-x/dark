@@ -55,7 +55,6 @@ function removeFromUserConnection(connection: Connection): void {
 }
 
 export function getUserStatus(userId: string): UserStatus {
-  console.log(userConnection);
   return !!userConnection[userId]?.length ? UserStatus.ONLINE : UserStatus.OFFLINE;
 }
 
