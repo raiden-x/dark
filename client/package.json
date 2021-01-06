@@ -34,7 +34,7 @@
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
     "@stomp/stompjs": "^5.4.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "isomorphic-ws": "^4.0.1",
     "lodash": "^4.17.19",
     "react": "^16.13.1",
